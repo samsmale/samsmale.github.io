@@ -418,8 +418,9 @@ dealerLogic = function (){
 }
 
 showCards = function(){
-	$('.hidden').removeClass('hidden')
-
+	$('.hidden').removeClass('hidden');
+	$('.upcard').addClass('hidden');
+	$('.downcard').addClass('hidden');
 }
 
 dealerValue = function(){
@@ -491,6 +492,7 @@ deal = function (){
 	playerValue();
 	getDealerCard();
 	$('.dealerCards').prepend($('<img>', {class:'upcard',src: newDeck[getDealerCard()].imgUrl}))
+	$('.dealerCards').prepend($('<img>', {class:'downcard',src: 'assets/PNG-cards-1.3/red_joker.png'}))
 	getDealerCard();
 	dealerValue();
 }
