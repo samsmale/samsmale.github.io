@@ -312,6 +312,14 @@ playerValue = function(){
 	return total;
 	}
 
+placeYourBet = function(){
+  if ($('.bet').val().length > 0) {
+        $('.deal').prop("disabled", false);
+  } else {
+        $('.deal').prop("disabled", true);
+    }
+}
+
 
 dealerLogic = function (){
 	var $playerValue = playerValue();
@@ -337,40 +345,47 @@ dealerValue = function(){
 	return total;
 }
 
+
 gameOver = function(){
 	console.log(playerValue())
 	console.log(dealerValue())
 	console.log($('.bet').val())
 	if (playerValue() === 21 && dealerValue() != 21) {
-	console.log('21! You win!');
-	bank = parseInt(bank) + parseInt($('.bet').val());
-	bank = parseInt(bank) + parseInt($('.bet').val());
+		$('.outcome').text('21! You win!');
+		console.log('21! You win!');
+		bank = parseInt(bank) + (2 * parseInt($('.bet').val()));
 } else if (playerValue() > 21) {
-	console.log('Bust! You lose!');
-	bank = parseInt(bank) - parseInt($('.bet').val())
+		$('.outcome').text('Bust! You lose!');
+		console.log('Bust! You lose!');
+		bank = parseInt(bank) - parseInt($('.bet').val())
 } else if (dealerValue > 17 && playerValue() === dealerValue()){
-	console.log('Push!');
-	bank = parseInt(bank) + parseInt($('.bet').val())
-	bank = parseInt(bank) + $('.bet').val();
+		$('.outcome').text('Push!');
+		console.log('Push!');
+		bank = parseInt(bank) + parseInt($('.bet').val());
 } else if (dealerValue() > 21) {
-	console.log('Dealer bust! You win!');
-	bank = parseInt(bank) + parseInt($('.bet').val());
-	bank = parseInt(bank) + parseInt($('.bet').val());
+		$('.outcome').text('Dealer bust! You win!');
+		console.log('Dealer bust! You win!');
+		bank = parseInt(bank) + (2 * parseInt($('.bet').val()));
 } else if (playerValue() > dealerValue()){
-	console.log('You win!');
-	bank = parseInt(bank) + parseInt($('.bet').val());
-	bank = parseInt(bank) + parseInt($('.bet').val());
+		$('.outcome').text('You win!');
+		console.log('You win!');
+		bank = parseInt(bank) + (2 * parseInt($('.bet').val()));
 } else if (dealerValue() > playerValue()) {
-	console.log('You lose!');
-	bank = parseInt(bank) - parseInt($('.bet').val());
+		$('.outcome').text('You lose!');
+		console.log('You lose!');
+		bank = parseInt(bank) - parseInt($('.bet').val());
 } else gameState = true;
-$('.bank').text(bank);
+		$('.bank').text(bank);
 }
 
 deal = function (){
+	bank = parseInt($('.bank').text()) - parseInt($('.bet').val());
+	$('.bank').text(bank);
+	$('.outcome').text('');
 	dealerCardValue = [];
 	playerCardValue = [];
 	cardsInPlay = [];
+
 	getPlayerCard();
 	getPlayerCard();
 	
@@ -394,6 +409,11 @@ $('.stay').on('click', function(){
 	dealerLogic();
 	gameOver();
 })
+
+$(document).ready(function (){
+    placeYourBet();
+    $('.bet').change(placeYourBet);
+});
 
 
 
