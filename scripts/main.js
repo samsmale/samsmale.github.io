@@ -394,8 +394,6 @@ playerValue = function(){
 placeYourBet = function(){
   if ($('.bet').val().length > 0) {
         $('.deal').prop("disabled", false);
-        $('.hit').prop("disabled", false);
-        $('.stay').prop("disabled", false);
   } else {
         $('.deal').prop("disabled", true);
         $('.hit').prop("disabled", true);
@@ -483,6 +481,8 @@ deal = function (){
 	playerHand = [];
 	dealerHand = [];
 	cardsInPlay = [];
+	$('.hit').prop("disabled", false);
+  $('.stay').prop("disabled", false);
 
 	getPlayerCard();
 	getPlayerCard();
