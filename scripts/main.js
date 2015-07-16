@@ -267,41 +267,25 @@ var newDeck ={
 var dealerCardValue = [];
 var playerCardValue = [];
 var cardsInPlay = [];
+var gameState = true;
 
 
 getPlayerCard = function (){
 	var card = Math.floor(Math.random() * 52);
-console.log(card);
 	var duplicateCheck = checkForDuplicates(card);
-console.log(duplicateCheck);
 	if (duplicateCheck === false) {
 		playerCardValue.push(newDeck[card].value)
 		cardsInPlay.push(card)
 	} else getPlayerCard();
-	console.log(cardsInPlay)
 }
 
 getDealerCard = function (){
 	var card = Math.floor(Math.random() * 52);
-console.log(card);
 	var duplicateCheck = checkForDuplicates(card);
-console.log(duplicateCheck);
 	if (duplicateCheck === false) {
 		dealerCardValue.push(newDeck[card].value)
 		cardsInPlay.push(card)
 	} else getDealerCard();
-	console.log(cardsInPlay)
-}
-
-
-console.log(cardsInPlay)
-
-gameOver = function(element) {
-	if (element === 21) {
-		return true;
-	} else if (element > 21) {
-		return true;
-	} else return false;
 }
 
 checkForDuplicates = function(element){
@@ -314,16 +298,28 @@ checkForDuplicates = function(element){
 
 playerValue = function(){
 	var total = 0;
-for (var i = 0; i < playerCardValue.length; i++) {
+	for (var i = 0; i < playerCardValue.length; i++) {
     total += playerCardValue[i] << 0;
-}
-
+	}
 	$('.playerValue').text(total)
-	if (total === 21) {
-		alert('You win!')
-	} else if (total > 21) {
-		alert('You went bust!')
-	};
+	if (total > 21) {
+		gameState = false;
+		console.log('loser!')
+	} return total;
+	}
+
+dealerLogic = function (){
+	var $playerValue = playerValue();
+	var $dealerValue = dealerValue();
+	if ($dealerValue < 17 && $dealerValue <= $playerValue) {
+		getDealerCard();
+		dealerValue();
+		dealerLogic();
+	}else if ($dealerValue < $playerValue && $dealerValue < 21) {
+		getDealerCard();
+		dealerValue();
+		dealerLogic();
+	}; gameState = false
 }
 
 dealerValue = function(){
@@ -332,16 +328,34 @@ dealerValue = function(){
     total += dealerCardValue[i] << 0;
 	}
 	$('.dealerValue').text(total)
+	return total;
+}
+
+gameOver = function(){
+	console.log(playerValue())
+	console.log(dealerValue())
+	if (playerValue() === 21 && dealerValue() != 21) {
+	console.log('21! You win!');
+} else if (playerValue() > 21) {
+	console.log('Bust! You lose!');
+} else if (playerValue() === dealerValue()){
+	console.log('Push!');
+} else if (dealerValue() > 21) {
+	console.log('Dealer bust! You win!');
+} else if (playerValue() > dealerValue()){
+	console.log('You win!');
+} else console.log('You lose!');
 }
 
 $('.hit').on('click', function(){
 	getPlayerCard();
 	playerValue();
-// 	if ($('.dealerValue').text() > 21) {
-// 	alert('bust')
-// };else	
 })
 
+$('.stay').on('click', function(){
+	dealerLogic();
+	gameOver();
+})
 
 
 
@@ -354,10 +368,9 @@ $(document).ready(function(){
 	getDealerCard();
 	getDealerCard();
 	dealerValue();
-
 })
 
-
+console.log(playerValue())
 
 
 // console.log(playerCardValue[0])
