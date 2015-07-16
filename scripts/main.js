@@ -346,6 +346,7 @@ getDealerCard = function (){
 		dealerHand.push(card);
 		$('.dealerCards').prepend($('<img>', {class:'hidden card',src: newDeck[card].imgUrl}))
 	} else getDealerCard();
+	return card
 }
 
 checkForAces = function(element){
@@ -393,8 +394,12 @@ playerValue = function(){
 placeYourBet = function(){
   if ($('.bet').val().length > 0) {
         $('.deal').prop("disabled", false);
+        $('.hit').prop("disabled", false);
+        $('.stay').prop("disabled", false);
   } else {
         $('.deal').prop("disabled", true);
+        $('.hit').prop("disabled", true);
+        $('.stay').prop("disabled", true);
     }
 }
 
@@ -471,7 +476,6 @@ deal = function (){
 	$('.bank').text(bank);
 	$('.outcome').text('');
 	$('.dealerValue').addClass('hidden');
-	$('.dealerCards').addClass('hidden');
 	$('.playerCards img').remove();
 	$('.dealerCards img').remove();
 	dealerCardValue = [];
@@ -486,6 +490,7 @@ deal = function (){
 	console.log(cardsInPlay);
 	playerValue();
 	getDealerCard();
+	$('.dealerCards').prepend($('<img>', {class:'upcard',src: newDeck[getDealerCard()].imgUrl}))
 	getDealerCard();
 	dealerValue();
 }

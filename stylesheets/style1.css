@@ -5,9 +5,14 @@ h1{
 
 .card{
 	height: 100px;
+	position: relative;
 
 }
 
 .hidden{
 	display: none;
+}
+
+.upcard{
+	height: 100px;
 }
