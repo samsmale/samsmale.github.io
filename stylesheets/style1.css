@@ -2,3 +2,12 @@ h1{
 	color: red;
 	font-size: 150%;
 }
+
+.card{
+	height: 100px;
+
+}
+
+.hidden{
+	display: none;
+}
