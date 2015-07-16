@@ -318,8 +318,10 @@ var newDeck ={
 }
 var dealerCardValue = [];
 var playerCardValue = [];
+var playerCardValueSecondHand = [];
 var dealerHand = [];
 var playerHand = [];
+var playerSecondHand = [];
 var cardsInPlay = [];
 var bank = 1000;
 // var gameState = true;
@@ -333,8 +335,20 @@ getPlayerCard = function (){
 		playerCardValue.push(newDeck[card].value);
 		cardsInPlay.push(card);
 		playerHand.push(card);
-		$('.playerCards').prepend($('<img>', {class:'card',src: newDeck[card].imgUrl}))
+		$('.playerCards').append($('<img>', {class:'card' + " " + 'card' + cardsInPlay.indexOf(card),src: newDeck[card].imgUrl}))
 	} else getPlayerCard();
+	return card
+}
+
+getPlayerCardSecondHand = function (){
+	var card = Math.floor(Math.random() * 52);
+	var duplicateCheck = checkForDuplicates(card);
+	if (duplicateCheck === false) {
+		playerCardValueSecondHand.push(newDeck[card].value);
+		cardsInPlay.push(card);
+		playerSecondHand.push(card);
+		$('.playerCardsSecondHand').append($('<img>', {class:'card',src: newDeck[card].imgUrl}))
+	} else getPlayerCardSecondHand();
 }
 
 getDealerCard = function (){
@@ -342,8 +356,11 @@ getDealerCard = function (){
 	var duplicateCheck = checkForDuplicates(card);
 	if (duplicateCheck === false) {
 		dealerCardValue.push(newDeck[card].value);
+		console.log(dealerHand)
 		cardsInPlay.push(card);
+		console.log(dealerHand)
 		dealerHand.push(card);
+		console.log(dealerHand)
 		$('.dealerCards').prepend($('<img>', {class:'hidden card',src: newDeck[card].imgUrl}))
 	} else getDealerCard();
 	return card
@@ -376,6 +393,7 @@ playerValue = function(){
 	}
 	console.log(checkForAces(playerHand));
 	console.log(playerHand)
+	console.log(total)
 	if (total > 21 && checkForAces(playerHand) === true) {
 		total = total - 10;
 		$('.playerValue').text(total);
@@ -388,6 +406,28 @@ playerValue = function(){
 		$('.playerValue').text(total);
 	} else
 	$('.playerValue').text(total);
+
+	}
+
+	playerValueSecondHand = function(){
+	var total = 0;
+	for (var i = 0; i < playerCardValueSecondHand.length; i++) {
+    total += playerCardValueSecondHand[i] << 0;
+	}
+	console.log(checkForAces(playerSecondHand));
+	console.log(playerSecondHand)
+	if (total > 21 && checkForAces(playerSecondHand) === true) {
+		total = total - 10;
+		$('.playerValueSecondHand').text(total);
+	} else if (total > 21) {
+		showCards();
+		$('.outcome').text('You lose!');
+		console.log('Bust! You lose!');
+		bank = parseInt(bank) - parseInt($('.bet').val());
+		$('.bank').text(bank);
+		$('.playerValueSecondHand').text(total);
+	} else
+	$('.playerValueSecondHand').text(total);
 	return total;
 	}
 
@@ -436,6 +476,15 @@ dealerValue = function(){
 	return total;
 }
 
+isItSplit = function(){
+	if (newDeck[cardsInPlay[0]].name === newDeck[cardsInPlay[1]].name){
+		$('#split').removeClass('hidden');
+		// var split = $('<button>').addClass('split').text('Split')
+		// $('.buttons').append(split);
+	}
+	}
+
+
 
 gameOver = function(){
 	console.log(playerValue())
@@ -477,24 +526,33 @@ deal = function (){
 	$('.dealerValue').addClass('hidden');
 	$('.playerCards img').remove();
 	$('.dealerCards img').remove();
+	$('.playerCardsSecondHand img').remove();
+	$('#split').addClass('hidden');
+	$('.secondHandButtons').addClass('hidden')
 	dealerCardValue = [];
 	playerCardValue = [];
+	playerCardValueSecondHand = [];
 	playerHand = [];
+	playerSecondHand = [];
 	dealerHand = [];
 	cardsInPlay = [];
 	$('.hit').prop("disabled", false);
   $('.stay').prop("disabled", false);
 
+
 	getPlayerCard();
 	getPlayerCard();
+	isItSplit();
 	
 	console.log(cardsInPlay);
 	playerValue();
 	getDealerCard();
+	console.log(dealerHand)
 	$('.dealerCards').prepend($('<img>', {class:'upcard',src: newDeck[getDealerCard()].imgUrl}))
 	$('.dealerCards').prepend($('<img>', {class:'downcard',src: 'assets/PNG-cards-1.3/red_joker.png'}))
-	getDealerCard();
+	console.log(dealerHand)
 	dealerValue();
+	console.log(dealerHand)
 }
 
 $('.deal').on('click', function(){
@@ -511,9 +569,37 @@ $('.stay').on('click', function(){
 	gameOver();
 })
 
+$('#split').on('click', function(){
+	oldCard = playerHand.splice(0,1);
+	oldCardValue = playerCardValue.splice(0,1)
+	playerSecondHand.splice(0,1,oldCard[0]);
+	playerCardValueSecondHand.splice(0,1,oldCardValue[0])
+	$('.card0').prependTo('.playerCardsSecondHand');
+	getPlayerCardSecondHand();
+	getPlayerCard();
+	$('.playerSecondHand').removeClass('hidden');
+	$('.secondHandButtons').removeClass('hidden');
+	playerValueSecondHand();
+	playerValue();
+	$('#split').addClass('hidden');
+	
+})
+
+$('.secondHandHit').on('click', function(){
+	getPlayerCardSecondHand();
+	playerValueSecondHand();
+})
+
+$('.secondHandStay').on('click', function(){
+	dealerLogic();
+	gameOver();
+})
+
+
 $(document).ready(function (){
     placeYourBet();
     $('.bet').change(placeYourBet);
+    $('.playerSecondHand').addClass('hidden');
 });
 
 
