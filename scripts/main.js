@@ -618,7 +618,13 @@ $('.secondHandStay').on('click', function(){
 
 $(document).ready(function (){
     placeYourBet();
-    $('.bet').change(placeYourBet);
+    $('.bet').keypress(function (element) {
+     if (element.which != 8 && element.which != 0 && (element.which < 48 || element.which > 57)) {
+        $('.errmsg').text("Numbers Only").show().fadeOut("slow");
+               return false;
+    }
+   });
+    $('.bet').bind("change paste keyup", placeYourBet);
 });
 
 

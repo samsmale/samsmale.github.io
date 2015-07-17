@@ -37,3 +37,11 @@ h1{
 #split{
 	display: none;
 }
+
+.errmsg{
+	position: absolute;
+	width: 100%;
+	font-size: 15vw;
+	text-align: center;
+	top: 25%;
+}
