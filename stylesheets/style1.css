@@ -13,6 +13,10 @@ h1{
 	display: none;
 }
 
+.dealerCards{
+	display: none;
+}
+
 .upcard{
 	height: 100px;
 }
@@ -20,4 +24,16 @@ h1{
 .downcard{
 	height: 100px;
 	background-image: 
+}
+
+.playerSecondHand{
+	display: none;
+}
+
+.secondHandButtons{
+	display: none;
+}
+
+#split{
+	display: none;
 }
