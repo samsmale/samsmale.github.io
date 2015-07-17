@@ -525,31 +525,35 @@ gameOver = function(element1, element2){
 		$('.bank').text(bank);
 }
 
-deal = function (){
-	bank = parseInt($('.bank').text()) - parseInt($('.bet').val());
-	$('.bank').text(bank);
-	$('.outcome').text('');
+setToZero = function(){
+  $('.bank').text(bank);
+  $('.outcome').text('');
   $('.secondOutcome').text('');
-	$('.dealerValue').hide();
-	$('.playerCards img').remove();
-	$('.dealerCards img').remove();
-	$('.dealerStarterCards img').remove();
-	$('.playerCardsSecondHand img').remove();
-	$('#split').hide();
-	$('.secondHandButtons').hide();
-	$('.upcard').show();
-	$('.downcard').show();
+  $('.dealerValue').hide();
+  $('.playerCards img').remove();
+  $('.dealerCards img').remove();
+  $('.dealerStarterCards img').remove();
+  $('.playerCardsSecondHand img').remove();
+  $('#split').hide();
+  $('.secondHandButtons').hide();
+  $('.upcard').show();
+  $('.downcard').show();
   $('.hit').show();
   $('.playerValueSecondHand').text('');
-	dealerCardValue = [];
-	playerCardValue = [];
-	playerCardValueSecondHand = [];
-	playerHand = [];
-	playerSecondHand = [];
-	dealerHand = [];
-	cardsInPlay = [];
-	$('.hit').prop("disabled", false);
+  dealerCardValue = [];
+  playerCardValue = [];
+  playerCardValueSecondHand = [];
+  playerHand = [];
+  playerSecondHand = [];
+  dealerHand = [];
+  cardsInPlay = [];
+  $('.hit').prop("disabled", false);
   $('.stay').prop("disabled", false);
+}
+
+deal = function (){
+	bank = parseInt($('.bank').text()) - parseInt($('.bet').val());
+	setToZero();
 	getPlayerCard();
 	getPlayerCard();
 	isItSplit(playerHand);
@@ -575,6 +579,10 @@ $('.stay').on('click', function(){
 	dealerLogic();
 	gameOver('.playerValue', '.outcome');
   showCards();
+})
+
+$('.restart').on('click', function(){
+  location.reload();
 })
 
 $('#split').on('click', function(){
