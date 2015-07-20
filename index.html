@@ -3,26 +3,43 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Boilerplate</title>
+  <title>BlackJack</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+  <title>BlackJack</title>
+  <link rel="stylesheet" href="stylesheets/normalize.css">
+  <link rel="stylesheet" href="stylesheets/skeleton.css">
   <link rel="stylesheet" type="text/css" href="stylesheets/style1.css">
+  <link rel="icon" type="image/png" href="assets/images/Sykonist-Looney-Tunes-Yosemite-Sam-Legion.ico">
 </head>
 
 <body>
-	<div>
+	<div class="container">
+		<div class="row">
 			<input placeholder='place your bet' type="text" class='bet'>
+			<button class='deal'>Deal</button>
+			
+			<button class='restart'>Restart</button>
+			</div>
+			<div class="row">
+			<div>Bank: </div><div class='bank'>1000</div>
+			</div>
 			<div class='errmsg'></div>
-		<div class='buttons'>
-	<button class='deal'>Deal</button>
+	<div class='playerCards'></div>
+Total: <div class='playerValue'></div>
+	
+			<div class='buttons'>
+	
 	<button class='hit'>Hit</button>
-	<button class='stay'>Stay</button>
-	<button id= 'split' class='button'>Split</button>
-	<button class='restart'>Restart</button>
+	<button class='stand'>Stand</button>
+	<button class='doubleDown'>Double Down</button>
+	<button id= 'split' class='split'>Split</button>
+	
 
 	<div class='outcome'></div>
 </div>
-	<div class='playerCards'></div>
-Total: <div class='playerValue'></div>
-	</div>
 
 	<div class='playerSecondHand'>
 	<div class='playerCardsSecondHand'></div>
@@ -30,14 +47,13 @@ Total: <div class='playerValue'></div>
 	</div>
 	<div class='secondHandButtons'>
 	<button class='secondHandHit'>Hit</button>
-	<button class='secondHandStay'>Stay</button>
+	<button class='secondHandStand'>Stand</button>
+	<button class='secondHandDoubleDown'>Double Down</button>
 	<div class='secondOutcome'></div>
 </div>
-<br>
-	<br>
-	Bank: <div class='bank'>1000</div>
 
-	<div class='dealerCards'>
+
+	<div class='dealerCards'></div>
 	<div class='dealerStarterCards'></div>
 	<div class='hidden dealerValue'></div>
 	</div>

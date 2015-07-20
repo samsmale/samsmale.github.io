@@ -1,11 +1,13 @@
-h1{
-	color: red;
-	font-size: 150%;
+body{
+	background-color: #376532
+}
+.container{
+	margin-left: 50%;
+	left: -150px;
 }
 
 .card{
 	height: 100px;
-	position: relative;
 
 }
 
@@ -44,4 +46,19 @@ h1{
 	font-size: 15vw;
 	text-align: center;
 	top: 25%;
+}
+
+.dealerStarterCards{
+	display: inline;
+}
+
+.hit, .stand, .doubleDown, .restart{
+	display: none;
+}
+
+.playercards{
+}
+
+.button{
+	
 }
