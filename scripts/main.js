@@ -505,7 +505,7 @@ deal = function () {
 	getCard(dealerCardValue, dealerHand, '.dealerCards');;
 	getCard(dealerCardValue, dealerHand, '.dealerCards');;
 	$('.dealerStarterCards').prepend($('<img>', {class:'upcard',src: newDeck[dealerHand[1]].imgUrl}));
-	$('.dealerStarterCards').prepend($('<img>', {class:'downcard',src: 'assets/PNG-cards-1.3/red_joker.png'}));
+	$('.dealerStarterCards').prepend($('<img>', {class:'downcard',src: 'assets/images/mechanic-deck-marked-deck-of-animated-playing-cards-3.png'}));
 	getValue(dealerCardValue, dealerHand, '.dealerValue');
   $('.stand').prop('disabled', false);
   $('.doubleDown').prop('disabled', false);
