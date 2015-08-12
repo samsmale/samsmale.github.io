@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+ <head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+	<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
+  <link rel="stylesheet" href="reps_pure.css">
+  <title><%= loaf.title %></title>
+  </head>
+	<body>
+		<form action="/loafs/<%= loaf.id %>?_method=PUT" method="POST">
+			<label for="title">Title</label>
+			<input type="text" id="title" name="title" value="<%= loaf.title %>">
+			<label for="content">Content</label>
+			<input type="text" id="content" name="content" value="<%= loaf.content %>">
+			
+			<button>Update your loaf</button>
+		</form>
+		<form action="/loafs/<%= loaf.id %>?_method=DELETE" method="POST">
+				<button>Throw it out!</button>
+				</form>
+				</div>
+				</div>
+	</body>
+</html>

@@ -1,0 +1,15 @@
+.container{
+	width: 660px;
+	margin: auto;
+}
+
+.box{
+	width: 200px;
+	height: 200px;
+	display: inline-block;
+	margin: 10px;
+	background: red;
+	vertical-align:top;
+	text-align: center;
+	background-size: 200px 200px;
+}

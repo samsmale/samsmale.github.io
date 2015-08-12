@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+	<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
+  <link rel="stylesheet" href="reps_pure.css">
+	<title><%=loaf.title %></title>
+</head>
+<body>
+
+	<h1><%=loaf.title %></h1>
+		<h3><%= loaf.user %></h3>
+		<h3><%= loaf.content %></h3>
+		<h3><%= loaf.votes %></h3>
+
+<% slices.forEach(function(slices){ %>
+	
+	<h6><%= slices.content %></h6>
+
+<% }) %>
+
+		<form action="/loafs/<%= loaf.id %>/upvote/?_method=PUT" method="POST">
+				<button>Upvote</button>
+				</form>
+
+		<form action="/loafs/<%= loaf.id %>/edit" method="GET">
+				<button>Update</button>
+				</form>
+	
+				<form action="/loafs/" method="GET">
+				<button>back to the beginning</button>
+				</form>
+
+				<form action="/loafs/<%= loaf.id %>/?_method=POST" method="POST">
+			<label for="user">User</label>
+			<input type="text" id="user" name="user">
+			<label for="content">Content</label>
+			<input type="text" id="content" name="content">
+			<button>Add a slice</button>
+		</form>
+
+							
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!doctype html>
+  <head>
+  	<meta charset="utf-8">
+   	<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+		<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
+  	<link rel="stylesheet" href="reps_pure.css">
+   	<title>Bake a Loaf</title>
+  </head>
+<html>
+	<body>
+		<h1>Bake a new Loaf</h1>
+			
+			<form action="/loafs" method="POST">
+				<label>New Loaf Title</label>
+						<input type="text" name="title">
+						<label>Your Username</label>
+						<input type="text" name="user">
+						<label>Content</label>
+						<input type="text" name="content">
+				<button>Bake!</button>
+			</form>
+	</body>
+</html>
