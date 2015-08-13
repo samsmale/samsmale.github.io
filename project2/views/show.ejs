@@ -4,15 +4,15 @@
 	<meta charset="utf-8">
 	<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
 	<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
-  <link rel="stylesheet" href="reps_pure.css">
-	<title><%=loaf.title %></title>
+  <link rel="stylesheet" href="bread_pure.css">
+	<title>Loaf</title>
 </head>
 <body>
 
-	<h1><%=loaf.title %></h1>
-		<h3><%= loaf.user %></h3>
-		<h3><%= loaf.content %></h3>
-		<h3><%= loaf.votes %></h3>
+	<h1><%=loafs.title %></h1>
+		<h3><%= loafs.user %></h3>
+		<h3><%= loafs.content %></h3>
+		<h3><%= loafs.votes %></h3>
 
 <% slices.forEach(function(slices){ %>
 	
@@ -20,11 +20,11 @@
 
 <% }) %>
 
-		<form action="/loafs/<%= loaf.id %>/upvote/?_method=PUT" method="POST">
+		<form action="/loafs/<%= loafs.id %>/upvote/?_method=PUT" method="POST">
 				<button>Upvote</button>
 				</form>
 
-		<form action="/loafs/<%= loaf.id %>/edit" method="GET">
+		<form action="/loafs/<%= loafs.id %>/edit" method="GET">
 				<button>Update</button>
 				</form>
 	
@@ -32,7 +32,7 @@
 				<button>back to the beginning</button>
 				</form>
 
-				<form action="/loafs/<%= loaf.id %>/?_method=POST" method="POST">
+				<form action="/loafs/<%= loafs.id %>/?_method=POST" method="POST">
 			<label for="user">User</label>
 			<input type="text" id="user" name="user">
 			<label for="content">Content</label>

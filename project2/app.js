@@ -17,15 +17,25 @@ app.get('/', function(req, res){
 });
 
 app.get('/loafs', function (req, res){
-	db.all('SELECT * FROM loafs ORDER BY votes desc', function(err, rows){
+	
+	db.all('SELECT * FROM loafs ORDER BY votes desc', function(err, loafs){
 	if (err) {
 		throw err
 	} else {
-		console.log(rows)
-	res.render('index.ejs', {loafs: rows})
-}
+		db.all('SELECT * FROM slices', function(err, slices){
+			var commentTotal =[];
+			for (var i = 0; i <= loafs.length; i++) {
+				commentTotal[i] = (0)
+			};
+			for (var i = 1; i < slices.length; i++) {
+				var num = slices[i].loaf_id
+				commentTotal[num]++
+			};
+			res.render('index.ejs', {loafs: loafs, slices: commentTotal})
+		})
+	}
 })
-});
+})
 
 app.get('/loafs/new', function (req, res){
 	res.render('new.ejs');
@@ -68,7 +78,7 @@ app.put('/loafs/:id', function (req, res){
 })
 
 app.get('/loafs/:id', function (req, res){
-	db.get('SELECT * FROM loafs WHERE loafs.id=?', parseInt(req.params.id), function(err, loaf){
+	db.get('SELECT * FROM loafs WHERE loafs.id=?', parseInt(req.params.id), function(err, loafs){
 	if (err) {
 		throw err;
 	} else {
@@ -76,10 +86,10 @@ app.get('/loafs/:id', function (req, res){
 		if (err) {
 		throw err;
 	} else {
-		console.log(loaf)
+		console.log(loafs)
 		console.log(slices)
 }
-		res.render('show.ejs', {loaf:loaf, slices:slices});
+		res.render('show.ejs', {loafs:loafs, slices:slices});
 })	
 }
 });
