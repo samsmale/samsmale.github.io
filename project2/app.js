@@ -12,6 +12,11 @@ app.set('view_engine', 'ejs');
 app.use(methodOverride('_method'));
 app.use(express.static('css'));
 
+var rndHouseNumber = function (){
+	var number = Math.floor(Math.random() * (6));
+	return number
+}
+
 app.get('/', function(req, res){
 	res.redirect('/loafs/');
 });
@@ -28,10 +33,12 @@ app.get('/loafs', function (req, res){
 				commentTotal[i] = (0)
 			};
 			for (var i = 1; i < slices.length; i++) {
+				var rnd = [1,2,3,4,5,6]
 				var num = slices[i].loaf_id
 				commentTotal[num]++
+				console.log(rnd)
 			};
-			res.render('index.ejs', {loafs: loafs, slices: commentTotal})
+			res.render('index.ejs', {loafs: loafs, slices: commentTotal, rnd: rnd})
 		})
 	}
 })

@@ -1,32 +1,53 @@
+body {
+  background-color: #2B2927;
+  font-family: helvetica;
+	font-weight: lighter;
+	overflow-x: hidden;
+	z-index: 1;
+}
 
 .pure-menu-horizontal {
-	background: #C84E1E;
 	text-align: center;
-	font-size: 1.5em;
+		font-size: 1em;
 }
 
 .pure-menu-heading {
 	color: #2B2927;
+font-size: 2em;
+	padding: 0;
+	text-transform: lowercase;
 }
 
-.button-create {
+.buttoncreate {
+	background-image: url('images/breaddit_logo.png') no-repeat;
 	position: fixed;
-	top: -.31em;
-	left: -.15em;
-font-size: 3em;
-   background: transparent;
-	width: 1em;
-	height: 1em;
-   color: #2B2927;
+	right:.25em;
+	bottom: .25em;
+	width: 2em;
+	height: 2em;
   cursor:pointer;
 	border: 0;
 	padding: 0;
 	margin-top: 0;
+}
 
+.logo-header {
+	top: 1em;
+	height: 4em;
+}
+
+.flatbutton {
+	padding: 0;
+	border: 0;
+	background: transparent;;
+}
+
+.contentspacer {
+	height: .5em;
 }
 
 .spacer {
-	height:6em;
+	height:3.75em;
 }
 
 a:link {
@@ -38,6 +59,9 @@ a:hover {
 	color: #2B2927;
 	text-decoration: none;
 }
+.logo {
+	height: 100%;
+}
 
 a:visited {
 	color: #2B2927;
@@ -45,17 +69,101 @@ a:visited {
 }
 
 .loafs {
-	background: #9FD2DF;
-	text-align: center;
-	font-size: 1.3em;
-	line-height: 3em;
+	background: #2B2927;
+	font-family: helvetica;
+	font-weight: lighter;
 }
 
+.user {
+	font-size: .75em;
+}
+
+.textarea {
+	height: 20em;
+}
+
+.commentarea {
+	height: 5em;
+	width: 12em;
+}
+
+.whitetext{
+	color: white;
+}
+
+.upvote {
+	height: 2.2em;
+	width: 2.2em;
+}
+
+.edit {
+	height: 2.6em;
+	width: 2.6em;
+}
+
+.loafs1 {
+	background: #5BC0EB;
+}
+.loafs0 {
+	background: #FDE74C;
+}
 .loafs2 {
-	background: #80AF54;
-	text-align: center;
-	font-size: 1.3em;
-	line-height: 3em;
+	background: #FA7921;
+}
+.loafs3 {
+	background: #E55934;
+}
+.loafs4 {
+	background: #9BC53D;
+}
+
+.navigation {
+    list-style: none;
+    background: #2B2927;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 0;
+}
+
+.site-wrap {
+    min-width: 100%;
+    min-height: 100%;
+    position: relative;
+    top: 0;
+    bottom: 100%;
+    right: 0;
+    z-index: 1;
+}
+
+.nav-trigger {
+    position: fixed;
+    clip: rect(0, 0, 0, 0);
+}
+
+label[for="nav-trigger"] {
+    position: fixed;
+    bottom: 1.2em;
+    right: 1.2em;
+    z-index: 2;
+    width: 3.4em;
+    height: 3.4em;
+    cursor: pointer;
+    background-image: url("/images/breaddit_logo.png");
+    background-size: 4em;
+}
+
+.nav-trigger:checked + label {
+    right: 215px;
+}
+
+.nav-trigger:checked ~ .site-wrap {
+    right: 200px;
+}
+
+.nav-trigger + label, .site-wrap {
+    transition: right 0.2s;
 }
 
 .loaf-title {
@@ -66,25 +174,8 @@ a:visited {
 	text-overflow: ellipsis;
 }
 
-.vote-box {
-	position: absolute;
-	text-align: center;
-}
-
-.vote-count {
-	line-height: 1.5em;
-	margin-top: .29em;
-	font-size: .75em;
-	background: white;
-  position: relative;
-  top: 50%;
-}
-
-.created-at {
-	font-size: .4em;
-}
-
-
-body {
-    background-color: #2B2927;
+@media all and (max-width:768px) {
+	body {
+		font-size: 200em;
+	}
 }

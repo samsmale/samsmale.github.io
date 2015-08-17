@@ -7,57 +7,40 @@
   <link rel="stylesheet" href="/bread_pure.css">
 </head>
 <body>
-
-<div class="header">
-	<div class="pure-menu-horizontal pure-menu-fixed">
-		<form class="pure-menu-list" action="/loafs/new" method="GET">
-		<button  class="button-create">+</button>
-	</form>
-<div class="pure-menu-heading">breaddit</div>
+	<div class="pure-menu pure-menu-horizontal pure-menu-fixed">
+        <a class="pure-menu-heading" href="/loafs/new"><img class="buttoncreate" src='/images/breaddit_logo.png'></a>
 	</div>
-	</div>
-	<div class="pure-g">
-		<div class="pure-u-1-6 spacer">
-   	</div>
-	</div>
+    <div class="pure-g">
+		<div class="pure-u-1 spacer"><img class="pure-img logo" src='/images/breaddit_logo_full_white.png'></div>
 	<% loafs.forEach(function(loafs){ %>
-
-	<div class="pure-g">
-    <div class="pure-u-1-6">
-   	</div>
-    <a href="/loafs/<%=loafs.id%>" class="pure-u-2-3 loafs">
-    	<div class="pure-g">
-    		<div class="pure-u-1-12 vote-box">
-    			<div class="">
-    			</div>
-    			<div class="pure-g">
-    			<div class="pure-u-3-8 vote-count"><%= loafs.votes %>
-    			</div>
-    			<div class="pure-u-5-8">
-    			</div>
-    			<div class="pure-u-3-8 vote-count">
-						<%= JSON.stringify(slices[loafs.id]) %>
-					</div>
-					<div class="pure-u-5-8"></div>
-    			</div>
-    			<div class=""></div>
-    		</div>
-    		<div class="pure-u-1-12">
-    	</div>
-    	<div class="pure-u-7-8 loaf-title">
-    		 <%= loafs.title %>
-    	</div>
-			</div></a>
-</div>
-
-
-
-
-	
-		<% }) %>
-
-	
-
-
+    
+        <script> document.write("<div class='pure-u-1 loafs"+ (<%= loafs.id %5 %>)+"'>")</script>
+        <div class="pure-g">
+            <div class="pure-u-1-6 pure-u-lg-1-24">
+                <div class="pure-g">
+                      <div class=" pure-u-1-2">
+                        <img class="pure-img pure-u-1" src='/images/arrowup.png'>
+                    </div>
+                    <div class="pure-u-1-2">
+                        <%= loafs.votes %>
+                    </div>
+                    <div class="pure-u-1-2">
+                        <img class="pure-img pure-u-1" src='/images/comments.png'>
+                    </div>
+                    <div class="pure-u-1-2">
+                        <%= JSON.stringify(slices[loafs.id]) %>
+                    </div>
+                </div>
+            </div>
+            <div class="pure-u-5-6 pure-u-lg-23-24 loaf-title">
+   	            <a class="pure-u-1" href="/loafs/<%=loafs.id%>">
+                    <%= loafs.title %>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="pure-u-1 contentspacer"></div>
+        <% }) %> 
+    </div>
 </body>
 </html>
